@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   物理試試看 — 松柏深綠 × 格線計算紙筆記設計系統
+   背景底色：#F4F5F7 | 格線：rgba(38, 100, 97, 0.065) 18px 細網格
+   主色：#266461 / #24554F | 暖金標：#C58B59 | 薄荷淺青：#E3F3F0 / #ECF2F2
+   ============================================================================ */
+
+:root {
+  --app-bg: #F4F5F7;
+  --card-bg: #FFFFFF;
+  --card-sub-bg: #ECF2F2;
+  --text-main: #232323;
+  --text-sub: #C58B59;
+  --border-color: #D5E2E0;
+  --accent-primary: #266461;
+  --accent-secondary: #24554F;
+}
+
+body {
+  font-family: 'Montserrat', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--app-bg);
+  color: var(--text-main);
+}
+
+h1, h2, h3, .font-serif {
+  font-family: 'Rufina', 'Noto Serif TC', serif;
+}
+
+/* 彈性過渡與按鈕按壓微互動 */
+button, input, .rounded-2xl, .rounded-xl, .rounded-lg, .rounded-md {
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@keyframes fadeInPop {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-pop {
+  animation: fadeInPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpSheet {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpSheet 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 冷霧細格紋計算紙背景 */
+.bg-grid-paper {
+  background-color: #F4F5F7;
+  background-image:
+    linear-gradient(to right, rgba(38, 100, 97, 0.065) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(38, 100, 97, 0.065) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* 勝利與重點標題的螢光筆畫線效果 */
+.highlighter-yellow {
+  background: linear-gradient(180deg, transparent 52%, #fce258 52%, #fce258 92%, transparent 92%);
+  padding: 0 10px;
+}
+
+/* 黃色直尺倒數計時條底部刻度紋理 */
+.ruler-ticks {
+  background-image: repeating-linear-gradient(
+    to right,
+    #232323 0px,
+    #232323 1.5px,
+    transparent 1.5px,
+    transparent 14px
+  );
+  background-size: 100% 6px;
+  background-position: bottom;
+  background-repeat: repeat-x;
+}
+
+.ruler-major-ticks {
+  background-image: repeating-linear-gradient(
+    to right,
+    #232323 0px,
+    #232323 2px,
+    transparent 2px,
+    transparent 56px
+  );
+  background-size: 100% 11px;
+  background-position: bottom;
+  background-repeat: repeat-x;
+}
+
+/* iPhone / PWA 底部安全區域內距 */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* 隱藏滾動條但保留捲動能力 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
