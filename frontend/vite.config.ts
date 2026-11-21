@@ -325,6 +325,7 @@ function physicsRoomServerPlugin(): Plugin {
 }
 
 export default defineConfig({
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [react(), physicsRoomServerPlugin()],
   server: {
     port: 5173,
